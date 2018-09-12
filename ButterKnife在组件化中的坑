@@ -1,0 +1,6 @@
+1.组件化中Butterknife配置看本工程配置
+2.因为在library模式下，ButterKnife的控件绑定只能使用R2来寻找资源，在Application模式下，使用R来寻找资源，那么在模式切换时会遇到一些坑
+--1.从library模式下切换到Applicaiton模式下R2会丢失，因此程序会报错。
+  原因：R、R2文件经编译后存在对应module的/Users/huolala-sunyan/Desktop/github/sy_mvp/module_test/build/generated/source/r/packagename下
+  这里就要注意了，在app下的build.gradle中如果引用的是 tools.build:gradle:3.1.0-alpha05及相关版本，编译的时候回自动删除R2类，这样就会导致R2找不到。
+  因此，在这里要避免引用alpha相关版本的gradle插件！！！
