@@ -1,5 +1,6 @@
 package com.sy.mvp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,9 +8,11 @@ import android.widget.TextView;
 
 import com.sy.mvp.bean.A;
 import com.sy.mvp.contract.AContract;
+import com.sy.mvp.dagger.container.DaggerTestActivity;
+import com.sy.mvp.model.AModel;
 import com.sy.mvp.presenter.APresenter;
 
-public class MainActivity extends BaseActivity<AContract.presenter> implements AContract.view{
+public class MainActivity extends BaseActivity<AContract.Presenter> implements AContract.View{
     TextView tv;
     Button btn01;
     @Override
@@ -22,7 +25,15 @@ public class MainActivity extends BaseActivity<AContract.presenter> implements A
         btn01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.start();
+                presenter.onStart();
+            }
+        });
+
+        findViewById(R.id.btn02).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DaggerTestActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -33,8 +44,8 @@ public class MainActivity extends BaseActivity<AContract.presenter> implements A
     }
 
     @Override
-    public AContract.presenter initPresenter() {
-        return new APresenter(this);
+    public AContract.Presenter initPresenter() {
+        return new APresenter(this,new AModel());
     }
 
     @Override
