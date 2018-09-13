@@ -3,6 +3,7 @@ package com.sy.mvp.dagger.module;
 import android.content.Context;
 
 import com.sy.mvp.dagger.inject.ApiService;
+import com.sy.mvp.dagger.inject.HttpClient;
 import com.sy.mvp.dagger.inject.UserManager;
 import com.sy.mvp.dagger.inject.UserStor;
 
@@ -22,8 +23,8 @@ public class UserModule {
     }
 
     @Provides
-    public ApiService provideApiService(){
-        return new ApiService();
+    public ApiService provideApiService(HttpClient httpClient){
+        return new ApiService(httpClient);
     }
 
     @Provides

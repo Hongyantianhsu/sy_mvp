@@ -36,6 +36,7 @@ public class DaggerTestActivity extends AppCompatActivity {
                 .build()
                 .inject(this);
         apiService.show();
+        apiService.request();
         userManager.show();
         userStor.show();
     }
