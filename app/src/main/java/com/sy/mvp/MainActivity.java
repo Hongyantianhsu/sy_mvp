@@ -7,20 +7,27 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.sy.mvp.bean.A;
+import com.sy.mvp.component.DaggerMainComponent;
 import com.sy.mvp.contract.AContract;
 import com.sy.mvp.dagger.container.DaggerTestActivity;
-import com.sy.mvp.model.AModel;
+import com.sy.mvp.module.MainModule;
 import com.sy.mvp.presenter.APresenter;
+
+import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity<AContract.Presenter> implements AContract.View{
     TextView tv;
     Button btn01;
+    @Inject
+    APresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         tv = findViewById(R.id.tv);
         btn01 = findViewById(R.id.btn01);
+
+        DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
 
         btn01.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,10 +50,10 @@ public class MainActivity extends BaseActivity<AContract.Presenter> implements A
         return R.layout.activity_main;
     }
 
-    @Override
-    public AContract.Presenter initPresenter() {
-        return new APresenter(this,new AModel());
-    }
+//    @Override
+//    public AContract.Presenter initPresenter() {
+//        return new APresenter(this,new AModel());
+//    }
 
     @Override
     public void showProgressDialog() {

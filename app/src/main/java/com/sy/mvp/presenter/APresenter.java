@@ -4,12 +4,15 @@ import com.sy.mvp.bean.A;
 import com.sy.mvp.contract.AContract;
 import com.sy.mvp.model.AModel;
 
+import javax.inject.Inject;
+
 /**
  * Created by huolala-sunyan on 2018/8/6.
  */
 
 public class APresenter extends BasePresenter<AModel,AContract.View> {
 
+    @Inject
     public APresenter(AContract.View view, AModel aModel) {
         super(view, aModel);
     }

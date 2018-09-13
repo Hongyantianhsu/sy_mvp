@@ -12,16 +12,16 @@ import com.sy.mvp.contract.AContract;
 
 public abstract class BaseActivity<T extends AContract.Presenter> extends AppCompatActivity {
 
-    public T presenter;
+//    public T presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(getLayout());
-        this.presenter = initPresenter();
+//        this.presenter = initPresenter();
     }
 
     public abstract int getLayout();
 
-    public abstract T initPresenter();
+//    public abstract T initPresenter();
 }
